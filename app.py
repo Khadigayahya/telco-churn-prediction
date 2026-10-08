@@ -23,11 +23,11 @@ st.set_page_config(page_title="Customer Churn Predictor", layout="wide")
 st.markdown("""
 <style>
 .stApp {
-    background: linear-gradient(135deg, #FFF0F6 0%, #FFD6E8 50%, #FFB3D1 100%);
+    background: linear-gradient(135deg, #F4F9FC 0%, #E6F2FA 50%, #D4EAF7 100%);
     background-attachment: fixed;
 }
 [data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #FFC2DB 0%, #FF9CC4 100%);
+    background: linear-gradient(180deg, #E3F1FA 0%, #CCE5F5 100%);
 }
 [data-testid="stHeader"] {
     background: transparent;
@@ -277,7 +277,7 @@ with tab_insights:
     st.subheader("Top 10 most important features")
     fi = pd.DataFrame(meta["top_features"]).sort_values("Importance")
     fig = px.bar(fi, x="Importance", y="Feature", orientation="h",
-                 color_discrete_sequence=["#D63384"])
+                 color_discrete_sequence=["#3A87BF"])
     fig.update_layout(height=450, **TRANSPARENT)
     st.plotly_chart(fig, width="stretch")
 
