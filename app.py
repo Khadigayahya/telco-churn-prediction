@@ -20,6 +20,23 @@ RAW_COLUMNS = ["gender", "SeniorCitizen", "Partner", "Dependents", "tenure",
 
 st.set_page_config(page_title="Customer Churn Predictor", layout="wide")
 
+st.markdown("""
+<style>
+.stApp {
+    background: linear-gradient(135deg, #FFF0F6 0%, #FFD6E8 50%, #FFB3D1 100%);
+    background-attachment: fixed;
+}
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #FFC2DB 0%, #FF9CC4 100%);
+}
+[data-testid="stHeader"] {
+    background: transparent;
+}
+</style>
+""", unsafe_allow_html=True)
+
+TRANSPARENT = dict(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(255,255,255,0.4)")
+
 
 @st.cache_resource
 def load_model():
@@ -78,7 +95,7 @@ def gauge(prob, color):
             ],
         },
     ))
-    fig.update_layout(height=300, margin=dict(l=20, r=20, t=60, b=10))
+    fig.update_layout(height=300, margin=dict(l=20, r=20, t=60, b=10), **TRANSPARENT)
     return fig
 
 
@@ -241,6 +258,7 @@ with tab_batch:
             fig = px.histogram(result, x="Churn_Probability", nbins=20, color="Prediction",
                                color_discrete_map={"Stay": "#4C9BE8", "Churn": "#E8604C"},
                                title="Distribution of churn probabilities")
+            fig.update_layout(**TRANSPARENT)
             st.plotly_chart(fig, width="stretch")
 
             st.dataframe(result.sort_values("Churn_Probability", ascending=False),
@@ -259,8 +277,8 @@ with tab_insights:
     st.subheader("Top 10 most important features")
     fi = pd.DataFrame(meta["top_features"]).sort_values("Importance")
     fig = px.bar(fi, x="Importance", y="Feature", orientation="h",
-                 color_discrete_sequence=["#E8604C"])
-    fig.update_layout(height=450)
+                 color_discrete_sequence=["#D63384"])
+    fig.update_layout(height=450, **TRANSPARENT)
     st.plotly_chart(fig, width="stretch")
 
     st.subheader("Key insights")

@@ -1,22 +1,22 @@
-# 📉 Telecom Customer Churn Prediction
+# Telecom Customer Churn Prediction
 
 A machine learning web app that predicts whether a telecom customer is likely to **churn** (leave the company), built with **scikit-learn** and deployed with **Streamlit**.
 
-🔗 **Live app:** https://telco-churn-prediction-lsm9fmgu2zimwgerznetw9.streamlit.app
+**Live app:** https://telco-churn-prediction-lsm9fmgu2zimwgerznetw9.streamlit.app
 
 ---
 
-## 📌 Problem
+## Problem
 Acquiring a new customer costs much more than keeping an existing one. This project identifies customers at risk of leaving, so the company can act before they churn.
 
 - **Type:** Supervised learning, binary classification
 - **Target:** `Churn` (Yes / No)
 - **Main metric:** Recall and F1-score for the churn class
 
-## 📊 Dataset
+## Dataset
 [Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) from Kaggle: 7,043 customers and 21 columns (demographics, services, account and billing information).
 
-## 🔬 Workflow
+## Workflow
 1. **Data definition:** structure, data types, data dictionary
 2. **Data cleaning:** fixed 11 hidden blank values in `TotalCharges`, wrong data types, removed 22 duplicates
 3. **EDA & visualization:** univariate, bivariate and correlation analysis
@@ -26,7 +26,7 @@ Acquiring a new customer costs much more than keeping an existing one. This proj
 7. **Hyperparameter tuning:** GridSearchCV / RandomizedSearchCV with 5-fold stratified CV
 8. **Evaluation:** confusion matrix, ROC and PR curves, overfitting check, feature importance, threshold analysis
 
-## 🏆 Final Model: Gradient Boosting (tuned) + SMOTE
+## Final Model: Gradient Boosting (tuned) + SMOTE
 
 | Metric | Score |
 |---|---|
@@ -37,12 +37,12 @@ Acquiring a new customer costs much more than keeping an existing one. This proj
 
 **Top churn drivers:** month-to-month contract, low tenure, fiber optic internet, electronic check payment.
 
-## 🖥️ App Features
+## App Features
 - **Single customer prediction:** churn probability gauge, risk level and retention recommendations
 - **Batch prediction:** upload a CSV, get predictions for all customers and download the results
 - **Model insights:** performance metrics and feature importance
 
-## 📁 Project Structure
+## Project Structure
 ```
 ├── app.py                  # Streamlit application
 ├── churn_model.pkl         # Trained pipeline (preprocessing + SMOTE + model)
@@ -64,5 +64,5 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-## 👩‍💻 Author
+## ‍Author
 Khadiga Yahya
