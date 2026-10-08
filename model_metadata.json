@@ -1,0 +1,142 @@
+{
+    "threshold": 0.5,
+    "categorical_options": {
+        "gender": [
+            "Female",
+            "Male"
+        ],
+        "Partner": [
+            "No",
+            "Yes"
+        ],
+        "Dependents": [
+            "No",
+            "Yes"
+        ],
+        "PhoneService": [
+            "No",
+            "Yes"
+        ],
+        "MultipleLines": [
+            "No",
+            "No phone service",
+            "Yes"
+        ],
+        "InternetService": [
+            "DSL",
+            "Fiber optic",
+            "No"
+        ],
+        "OnlineSecurity": [
+            "No",
+            "No internet service",
+            "Yes"
+        ],
+        "OnlineBackup": [
+            "No",
+            "No internet service",
+            "Yes"
+        ],
+        "DeviceProtection": [
+            "No",
+            "No internet service",
+            "Yes"
+        ],
+        "TechSupport": [
+            "No",
+            "No internet service",
+            "Yes"
+        ],
+        "StreamingTV": [
+            "No",
+            "No internet service",
+            "Yes"
+        ],
+        "StreamingMovies": [
+            "No",
+            "No internet service",
+            "Yes"
+        ],
+        "Contract": [
+            "Month-to-month",
+            "One year",
+            "Two year"
+        ],
+        "PaperlessBilling": [
+            "No",
+            "Yes"
+        ],
+        "PaymentMethod": [
+            "Bank transfer (automatic)",
+            "Credit card (automatic)",
+            "Electronic check",
+            "Mailed check"
+        ]
+    },
+    "numeric_ranges": {
+        "tenure": {
+            "min": 0.0,
+            "max": 72.0,
+            "mean": 32.46944879646774
+        },
+        "MonthlyCharges": {
+            "min": 18.25,
+            "max": 118.75,
+            "mean": 64.85189431704886
+        },
+        "TotalCharges": {
+            "min": 0.0,
+            "max": 8684.8,
+            "mean": 2286.765026349523
+        }
+    },
+    "metrics": {
+        "Accuracy": 0.7609,
+        "Precision": 0.534,
+        "Recall": 0.7608,
+        "F1": 0.6275,
+        "ROC-AUC": 0.8398
+    },
+    "top_features": [
+        {
+            "Feature": "Contract_Month-to-month",
+            "Importance": 0.4671
+        },
+        {
+            "Feature": "tenure",
+            "Importance": 0.1154
+        },
+        {
+            "Feature": "InternetService_Fiber optic",
+            "Importance": 0.0896
+        },
+        {
+            "Feature": "PaymentMethod_Electronic check",
+            "Importance": 0.0686
+        },
+        {
+            "Feature": "PaperlessBilling_Yes",
+            "Importance": 0.0639
+        },
+        {
+            "Feature": "Dependents_Yes",
+            "Importance": 0.0415
+        },
+        {
+            "Feature": "OnlineSecurity_Yes",
+            "Importance": 0.0384
+        },
+        {
+            "Feature": "Contract_Two year",
+            "Importance": 0.0217
+        },
+        {
+            "Feature": "MonthlyCharges",
+            "Importance": 0.0214
+        },
+        {
+            "Feature": "InternetService_No",
+            "Importance": 0.0205
+        }
+    ]
+}
