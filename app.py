@@ -23,19 +23,38 @@ st.set_page_config(page_title="Customer Churn Predictor", layout="wide")
 st.markdown("""
 <style>
 .stApp {
-    background: #000000;
-}
-[data-testid="stSidebar"] {
-    background: #121212;
+    background: #F4F6F9;
 }
 [data-testid="stHeader"] {
     background: transparent;
 }
+[data-testid="stSidebar"] {
+    background: #0F2A44;
+}
+[data-testid="stSidebar"] * {
+    color: #E6EDF5 !important;
+}
+[data-testid="stSidebar"] hr {
+    border-color: rgba(255,255,255,0.15);
+}
+h1, h2, h3 {
+    color: #0F2A44;
+}
+[data-testid="stMetric"] {
+    background: #FFFFFF;
+    border: 1px solid #E1E6ED;
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+[data-testid="stSidebar"] [data-testid="stMetric"] {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.12);
+}
 </style>
 """, unsafe_allow_html=True)
 
-TRANSPARENT = dict(template="plotly_dark", paper_bgcolor="rgba(0,0,0,0)",
-                   plot_bgcolor="rgba(255,255,255,0.03)", font=dict(color="#FFFFFF"))
+TRANSPARENT = dict(template="plotly_white", paper_bgcolor="rgba(0,0,0,0)",
+                   plot_bgcolor="#FFFFFF", font=dict(color="#1E293B"))
 
 
 @st.cache_resource
@@ -73,10 +92,10 @@ def clean_uploaded(data):
 
 def risk_level(prob):
     if prob < 0.3:
-        return "Low", "#2E9E5B"
+        return "Low", "#2A9D8F"
     if prob < 0.6:
-        return "Medium", "#E8A33C"
-    return "High", "#E8604C"
+        return "Medium", "#E9A23B"
+    return "High", "#D64545"
 
 
 def gauge(prob, color):
@@ -89,9 +108,9 @@ def gauge(prob, color):
             "axis": {"range": [0, 100]},
             "bar": {"color": color},
             "steps": [
-                {"range": [0, 30], "color": "rgba(46,158,91,0.15)"},
-                {"range": [30, 60], "color": "rgba(232,163,60,0.15)"},
-                {"range": [60, 100], "color": "rgba(232,96,76,0.15)"},
+                {"range": [0, 30], "color": "rgba(42,157,143,0.15)"},
+                {"range": [30, 60], "color": "rgba(233,162,59,0.15)"},
+                {"range": [60, 100], "color": "rgba(214,69,69,0.15)"},
             ],
         },
     ))
@@ -256,7 +275,7 @@ with tab_batch:
             k3.metric("Churn rate", f"{(result['Prediction'] == 'Churn').mean():.1%}")
 
             fig = px.histogram(result, x="Churn_Probability", nbins=20, color="Prediction",
-                               color_discrete_map={"Stay": "#4C9BE8", "Churn": "#E8604C"},
+                               color_discrete_map={"Stay": "#2A9D8F", "Churn": "#D64545"},
                                title="Distribution of churn probabilities")
             fig.update_layout(**TRANSPARENT)
             st.plotly_chart(fig, width="stretch")
@@ -277,7 +296,7 @@ with tab_insights:
     st.subheader("Top 10 most important features")
     fi = pd.DataFrame(meta["top_features"]).sort_values("Importance")
     fig = px.bar(fi, x="Importance", y="Feature", orientation="h",
-                 color_discrete_sequence=["#4DA3E0"])
+                 color_discrete_sequence=["#1F6FB2"])
     fig.update_layout(height=450, **TRANSPARENT)
     st.plotly_chart(fig, width="stretch")
 
