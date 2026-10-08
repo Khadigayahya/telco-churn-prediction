@@ -23,11 +23,10 @@ st.set_page_config(page_title="Customer Churn Predictor", layout="wide")
 st.markdown("""
 <style>
 .stApp {
-    background: linear-gradient(135deg, #F4F9FC 0%, #E6F2FA 50%, #D4EAF7 100%);
-    background-attachment: fixed;
+    background: #000000;
 }
 [data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #E3F1FA 0%, #CCE5F5 100%);
+    background: #121212;
 }
 [data-testid="stHeader"] {
     background: transparent;
@@ -35,7 +34,8 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-TRANSPARENT = dict(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(255,255,255,0.4)")
+TRANSPARENT = dict(template="plotly_dark", paper_bgcolor="rgba(0,0,0,0)",
+                   plot_bgcolor="rgba(255,255,255,0.03)", font=dict(color="#FFFFFF"))
 
 
 @st.cache_resource
@@ -277,7 +277,7 @@ with tab_insights:
     st.subheader("Top 10 most important features")
     fi = pd.DataFrame(meta["top_features"]).sort_values("Importance")
     fig = px.bar(fi, x="Importance", y="Feature", orientation="h",
-                 color_discrete_sequence=["#3A87BF"])
+                 color_discrete_sequence=["#4DA3E0"])
     fig.update_layout(height=450, **TRANSPARENT)
     st.plotly_chart(fig, width="stretch")
 
