@@ -2,7 +2,7 @@
 
 A machine learning web app that predicts whether a telecom customer is likely to **churn** (leave the company), built with **scikit-learn** and deployed with **Streamlit**.
 
-🔗 **Live app:** _add your Streamlit link here_
+🔗 **Live app:** https://telco-churn-prediction-lsm9fmgu2zimwgerznetw9.streamlit.app
 
 ---
 

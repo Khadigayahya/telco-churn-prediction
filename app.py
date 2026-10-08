@@ -18,7 +18,7 @@ RAW_COLUMNS = ["gender", "SeniorCitizen", "Partner", "Dependents", "tenure",
                "PhoneService", "MultipleLines", "InternetService"] + INTERNET_COLS + \
               ["Contract", "PaperlessBilling", "PaymentMethod", "MonthlyCharges", "TotalCharges"]
 
-st.set_page_config(page_title="Customer Churn Predictor", page_icon="📉", layout="wide")
+st.set_page_config(page_title="Customer Churn Predictor", layout="wide")
 
 
 @st.cache_resource
@@ -108,7 +108,7 @@ threshold = meta["threshold"]
 
 # ---------------- Sidebar ----------------
 with st.sidebar:
-    st.title("📉 Churn Predictor")
+    st.title("Churn Predictor")
     st.write("Predicts whether a telecom customer is likely to **leave the company**.")
     st.divider()
     st.subheader("Model")
@@ -123,7 +123,7 @@ with st.sidebar:
 
 st.title("Telecom Customer Churn Prediction")
 
-tab_single, tab_batch, tab_insights = st.tabs(["🧍 Single Customer", "📂 Batch Prediction", "📊 Model Insights"])
+tab_single, tab_batch, tab_insights = st.tabs(["Single Customer", "Batch Prediction", "Model Insights"])
 
 # ---------------- Single prediction ----------------
 with tab_single:
@@ -131,19 +131,19 @@ with tab_single:
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.markdown("##### 👤 Demographics")
+        st.markdown("##### Demographics")
         gender = st.selectbox("Gender", options["gender"])
         senior = st.selectbox("Senior Citizen", ["No", "Yes"])
         partner = st.selectbox("Partner", options["Partner"])
         dependents = st.selectbox("Dependents", options["Dependents"])
 
-        st.markdown("##### 📄 Account")
+        st.markdown("##### Account")
         contract = st.selectbox("Contract", options["Contract"])
         paperless = st.selectbox("Paperless Billing", options["PaperlessBilling"], index=1)
         payment = st.selectbox("Payment Method", options["PaymentMethod"])
 
     with col2:
-        st.markdown("##### 📞 Phone & Internet")
+        st.markdown("##### Phone & Internet")
         phone = st.selectbox("Phone Service", options["PhoneService"], index=1)
         if phone == "No":
             multiple = "No phone service"
@@ -162,7 +162,7 @@ with tab_single:
                 addons[col] = st.selectbox(label, ["No", "Yes"], key=col)
 
     with col3:
-        st.markdown("##### 💳 Charges")
+        st.markdown("##### Charges")
         tenure = st.slider("Tenure (months)", 0, int(ranges["tenure"]["max"]), 12)
         monthly = st.number_input("Monthly Charges ($)", min_value=0.0, max_value=200.0,
                                   value=70.0, step=0.5)
@@ -179,7 +179,7 @@ with tab_single:
     }
 
     st.divider()
-    if st.button("🔮 Predict Churn", type="primary", width="stretch"):
+    if st.button("Predict Churn", type="primary", width="stretch"):
         X = prepare_input(pd.DataFrame([customer]))
         prob = float(model.predict_proba(X)[0, 1])
         level, color = risk_level(prob)
@@ -189,13 +189,13 @@ with tab_single:
             st.plotly_chart(gauge(prob, color), width="stretch")
         with r2:
             if prob >= threshold:
-                st.error(f"### ⚠️ This customer is likely to CHURN\nRisk level: **{level}**")
+                st.error(f"### This customer is likely to CHURN\nRisk level: **{level}**")
             else:
-                st.success(f"### ✅ This customer is likely to STAY\nRisk level: **{level}**")
+                st.success(f"### This customer is likely to STAY\nRisk level: **{level}**")
 
             tips = recommendations(customer)
             if tips:
-                st.markdown("**💡 Retention recommendations**")
+                st.markdown("**Retention recommendations**")
                 for t in tips:
                     st.markdown(f"- {t}")
             else:
@@ -215,7 +215,7 @@ with tab_batch:
         "Contract": "Month-to-month", "PaperlessBilling": "Yes", "PaymentMethod": "Electronic check",
         "MonthlyCharges": 95.5, "TotalCharges": 191.0,
     }])
-    st.download_button("⬇️ Download CSV template", template.to_csv(index=False),
+    st.download_button("Download CSV template", template.to_csv(index=False),
                        "churn_template.csv", "text/csv")
 
     uploaded = st.file_uploader("Upload CSV", type="csv")
@@ -245,7 +245,7 @@ with tab_batch:
 
             st.dataframe(result.sort_values("Churn_Probability", ascending=False),
                          width="stretch")
-            st.download_button("⬇️ Download predictions", result.to_csv(index=False),
+            st.download_button("Download predictions", result.to_csv(index=False),
                                "churn_predictions.csv", "text/csv")
 
 # ---------------- Insights ----------------
